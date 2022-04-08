@@ -20,6 +20,9 @@
     "typescript": "^4.6.3",
     "weeknumber": "^1.2.1"
   },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
