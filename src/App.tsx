@@ -86,8 +86,8 @@ const App = () => {
           </li>
           <li>There is no reason for this to be React app... but it is.</li>
           <li>
-            It uses <a href="https://kognise.github.io/water.css/">Water.css</a>{" "}
-            (bundled cause official CDN was serving some old version).
+            It uses <a href="https://kognise.github.io/water.css/">Water.css</a>
+            .
           </li>
         </ul>
       </footer>
