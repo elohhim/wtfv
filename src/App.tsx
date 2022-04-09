@@ -78,7 +78,7 @@ const App = () => {
         <ul>
           <li>
             TBH I don't know if fix version uses {isoLink} week numbering, it
-            might be pure coincidence that it works for 2020.
+            might be pure coincidence that it worked for 2020-22 so far.
           </li>
           <li>
             <del>It might not work correctly</del>
