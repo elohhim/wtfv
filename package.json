@@ -4,6 +4,13 @@
   "homepage": "https://wtfv.jankumor.pl",
   "private": true,
   "dependencies": {
+    "ordinal": "^1.0.3",
+    "react": "^17.0.2",
+    "react-datepicker": "^4.7.0",
+    "react-dom": "^17.0.2",
+    "weeknumber": "^1.2.1"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -12,16 +19,9 @@
     "@types/react": "^17.0.2",
     "@types/react-datepicker": "^4.3.4",
     "@types/react-dom": "17.0.2",
-    "ordinal": "^1.0.3",
-    "react": "^17.0.2",
-    "react-datepicker": "^4.7.0",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.0",
+    "gh-pages": "^3.2.3",
     "typescript": "^4.6.3",
-    "weeknumber": "^1.2.1"
-  },
-  "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "react-scripts": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
