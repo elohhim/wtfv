@@ -1,5 +1,6 @@
 # What The Fix Version?
-[![tests](https://github.com/elohhim/wtfv/actions/workflows/node.js.yml/badge.svg)](https://github.com/elohhim/wtfv/actions/workflows/node.js.yml)
+[![CI Tests](https://github.com/elohhim/wtfv/actions/workflows/tetsts.node.js.yml/badge.svg)](https://github.com/elohhim/wtfv/actions/workflows/tetsts.node.js.yml)
+[![pages-build-deployment](https://github.com/elohhim/wtfv/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/elohhim/wtfv/actions/workflows/pages/pages-build-deployment)
 
 Simple React app to answer crucial question each developer asks on daily basis in my current company.
 
