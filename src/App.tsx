@@ -1,9 +1,10 @@
+import enGB from "date-fns/locale/en-GB";
+import ForkMeOnGithub from "fork-me-on-github";
+import ordinal from "ordinal";
 import { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
-import * as weeknumber from "weeknumber";
-import ordinal from "ordinal";
-import enGB from "date-fns/locale/en-GB";
 import "react-datepicker/dist/react-datepicker.css";
+import * as weeknumber from "weeknumber";
 
 registerLocale("en-GB", enGB);
 
@@ -91,6 +92,15 @@ const App = () => {
           </li>
         </ul>
       </footer>
+
+      <ForkMeOnGithub
+        className="fork-me-on-github"
+        repo="https://github.com/elohhim/wtfv"
+      ></ForkMeOnGithub>
+      <style>{`.fork-me-on-github > svg {
+        fill: var(--background) !important;
+        color: var(--text-main) !important;
+        }`}</style>
     </div>
   );
 };
