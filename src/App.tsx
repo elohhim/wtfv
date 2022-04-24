@@ -85,7 +85,7 @@ const App = () => {
             <del>It might not work correctly</del>
             It definitely works incorrectly around turn of the year.
           </li>
-          <li>There is no reason for this to be React app... but it is.</li>
+          <li>There is no reason for this to be React (Preact in fact) app... but it is.</li>
           <li>
             It uses <a href="https://kognise.github.io/water.css/">Water.css</a>
             .
