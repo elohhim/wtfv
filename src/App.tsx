@@ -49,8 +49,8 @@ const App = () => {
           <summary>Explain...</summary>
           <p>
             The year is {yearBig}
-            <mark>{yearLittle}</mark>
-            and it is <mark>{ordinal(week)} week</mark>
+            <mark>{yearLittle}</mark>{" "}
+            and it is <mark>{ordinal(week)} week</mark>{" "}
             of the year (according to {isoLink}). It is <mark>{dayName}</mark>{" "}
             {day === 4 ? thursdayExplain : ""} so we need to add{" "}
             <mark>{plus}</mark> to the week number. Hence we have{" "}
@@ -96,7 +96,7 @@ const App = () => {
       <ForkMeOnGithub
         className="fork-me-on-github"
         repo="https://github.com/elohhim/wtfv"
-      ></ForkMeOnGithub>
+      />
       <style>{`.fork-me-on-github > svg {
         fill: var(--background) !important;
         color: var(--text-main) !important;
