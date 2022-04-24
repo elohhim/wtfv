@@ -5,9 +5,9 @@ name: ci-tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, preact ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, preact ]
 
 jobs:
   build:
