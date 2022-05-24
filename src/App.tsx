@@ -5,35 +5,87 @@ import { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as weeknumber from "weeknumber";
+import { skipped } from "./skipped";
 
 registerLocale("en-GB", enGB);
+
+type FixVersionData = { fixVersion: string; plus: number; skipReason?: string };
 
 const splitAt = (index: number, x: string): string[] => [
   x.slice(0, index),
   x.slice(index),
 ];
 
-const getFixVersionAndPlus = (
+const getSkipReason = (version: string): string | undefined => {
+  return skipped.find((it) => it.version === version)?.reason;
+};
+
+const getFixVersionData = (
+  yearLittle: string,
+  week: number,
+  plus: number
+): FixVersionData => {
+  const fixVersion = `${yearLittle}.${week + plus}`;
+  return {
+    fixVersion,
+    plus,
+    skipReason: getSkipReason(fixVersion),
+  };
+};
+
+const getFixVersionsData = (
   yearLittle: string,
   week: number,
   day: number
-): [string, string] => {
+): FixVersionData[] => {
+  const plusOne = getFixVersionData(yearLittle, week, 1);
+  const plusTwo = getFixVersionData(yearLittle, week, 2);
   if (day === 4) {
-    return [`${yearLittle}.${week + 1} or ${yearLittle}.${week + 2}`, `1 or 2`];
+    return [plusOne, plusTwo];
   } else {
-    const plus = day > 4 ? 2 : 1;
-    return [`${yearLittle}.${week + plus}`, `${plus}`];
+    return [day > 4 ? plusTwo : plusOne];
   }
 };
 
 const isoLink = <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>;
+
+const FixVersion = (props: FixVersionData) => {
+  return props.skipReason ? (
+    <span
+      style={{ textDecoration: "line-through" }}
+      title={`Skipped: ${props.skipReason}`}
+    >
+      {props.fixVersion}
+    </span>
+  ) : (
+    <>{props.fixVersion}</>
+  );
+};
+
+const FixVersions = ({ fixVersions }: { fixVersions: FixVersionData[] }) => {
+  return (
+    <>
+      {fixVersions.map((fixVersion, index, array) => {
+        const last = index === array.length - 1;
+        return last ? (
+          <FixVersion {...fixVersion}></FixVersion>
+        ) : (
+          <>
+            <FixVersion {...fixVersion}></FixVersion> or{" "}
+          </>
+        );
+      })}
+    </>
+  );
+};
 
 const App = () => {
   const [date, setDate] = useState(new Date());
   const { year, week, day } = weeknumber.weekNumberYear(date);
   const dayName = date.toLocaleString("en-US", { weekday: "long" });
   const [yearBig, yearLittle] = splitAt(2, year.toString());
-  const [fixVersion, plus] = getFixVersionAndPlus(yearLittle, week, day);
+  const fixVersions = getFixVersionsData(yearLittle, week, day);
+  const plus = fixVersions.map(({ plus }) => plus).join(" or ");
   const thursdayExplain =
     "(Thursdays are tricky, there is release to staging on Thursday, check if the release was done already)";
   return (
@@ -43,18 +95,23 @@ const App = () => {
       </header>
       <main>
         <span>
-          <strong style={{ fontSize: "800%" }}>{fixVersion}</strong>
+          <strong style={{ fontSize: "800%" }}>
+            <FixVersions fixVersions={fixVersions}></FixVersions>
+          </strong>
         </span>
         <details>
           <summary>Explain...</summary>
           <p>
             The year is {yearBig}
-            <mark>{yearLittle}</mark>{" "}
-            and it is <mark>{ordinal(week)} week</mark>{" "}
-            of the year (according to {isoLink}). It is <mark>{dayName}</mark>{" "}
+            <mark>{yearLittle}</mark> and it is{" "}
+            <mark>{ordinal(week)} week</mark> of the year (according to{" "}
+            {isoLink}). It is <mark>{dayName}</mark>{" "}
             {day === 4 ? thursdayExplain : ""} so we need to add{" "}
             <mark>{plus}</mark> to the week number. Hence we have{" "}
-            <mark>{fixVersion}</mark>.
+            <mark>
+              <FixVersions fixVersions={fixVersions}></FixVersions>
+            </mark>
+            .
           </p>
         </details>
         or
@@ -85,7 +142,10 @@ const App = () => {
             <del>It might not work correctly</del>
             It definitely works incorrectly around turn of the year.
           </li>
-          <li>There is no reason for this to be React (Preact in fact) app... but it is.</li>
+          <li>
+            There is no reason for this to be React (Preact in fact) app... but
+            it is.
+          </li>
           <li>
             It uses <a href="https://kognise.github.io/water.css/">Water.css</a>
             .
