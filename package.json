@@ -4,6 +4,7 @@
   "homepage": "https://wtfv.jankumor.pl",
   "private": true,
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
     "fork-me-on-github": "^1.0.6",
     "ordinal": "^1.0.3",
     "preact": "^10.7.1",
