@@ -8,4 +8,8 @@ export const skipped: { version: string; reason: string }[] = [
     version: "22.27",
     reason: "July 4th Weekend",
   },
+  {
+    version: "22.36",
+    reason: "¯\\_(ツ)_/¯",
+  },
 ];
