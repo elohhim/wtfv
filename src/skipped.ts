@@ -12,4 +12,12 @@ export const skipped: { version: string; reason: string }[] = [
     version: "22.36",
     reason: "¯\\_(ツ)_/¯",
   },
+  {
+    version: "22.48",
+    reason: "Thanksgiving",
+  },
+  {
+    version: "22.52",
+    reason: "End of 2022",
+  },
 ];
