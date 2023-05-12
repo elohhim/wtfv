@@ -21,14 +21,14 @@ const ThemeContext: React.Context<Theme> = createContext<Theme>("light");
 const useThemeDetector = () => {
   const darkSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
   const getTheme = (mq: MediaQueryList | MediaQueryListEvent): Theme =>
-    mq.matches ? "dark" : "light";
+    mq?.matches ? "dark" : "light";
   const [theme, setIsDarkTheme] = useState(getTheme(darkSchemeQuery));
   useEffect(() => {
     const mqListener = (e: MediaQueryListEvent) => {
       setIsDarkTheme(getTheme(e));
     };
-    darkSchemeQuery.addEventListener("change", mqListener);
-    return () => darkSchemeQuery.removeEventListener("change", mqListener);
+    darkSchemeQuery?.addEventListener("change", mqListener);
+    return () => darkSchemeQuery?.removeEventListener("change", mqListener);
   }, [darkSchemeQuery]);
   return theme;
 };
@@ -96,10 +96,10 @@ const FixVersions = ({ fixVersions }: { fixVersions: FixVersionData[] }) => {
       {fixVersions.map((fixVersion, index, array) => {
         const last = index === array.length - 1;
         return last ? (
-          <FixVersion {...fixVersion}></FixVersion>
+          <FixVersion {...fixVersion} key={index}></FixVersion>
         ) : (
           <>
-            <FixVersion {...fixVersion}></FixVersion> or{" "}
+            <FixVersion {...fixVersion} key={index}></FixVersion> or{" "}
           </>
         );
       })}
