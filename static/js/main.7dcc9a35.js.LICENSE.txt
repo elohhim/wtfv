@@ -3,9 +3,3 @@
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
-
-/*!
- * weeknumber
- * @author commenthol
- * @license Unlicense
- */
